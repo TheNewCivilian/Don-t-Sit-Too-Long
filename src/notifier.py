@@ -6,8 +6,8 @@ import subprocess,os
 import sched, time
 import pyaudio
 import wave
-
-
+import random
+import datetime
 
 
 def playsound():
@@ -33,18 +33,30 @@ def sendmessage(title,message):
     playsound()
     return
 
+def add_log_entry(tid):
+     db = TinyDB(os.getcwd() +os.path.dirname(__file__)[1:]+'/../database/log.json')
+     ts = time.time()
+     year = datetime.datetime.fromtimestamp(ts).strftime("%Y")
+     month = datetime.datetime.fromtimestamp(ts).strftime("%m")
+     day = datetime.datetime.fromtimestamp(ts).strftime("%d")
+     hour = datetime.datetime.fromtimestamp(ts).strftime("%H")
+     minute = datetime.datetime.fromtimestamp(ts).strftime("%M")
+     db.insert({'tid': tid, 'year': year,'month': month,'day': day,'hour': hour,'minute': minute}) #insertdate
+
 def throw(inner_loop):
     db = TinyDB(os.getcwd() +os.path.dirname(__file__)[1:]+'/../database/db.json')
-    # db.insert({'tid': 1, 'name': 'a','disc':'DO A'})
-    # db.insert({'tid': 2, 'name': 'b','disc':'DO B'})
-    db_items_count = len(db.all())
+    active_task_list = []
     db_query = Query()
-    result_taskid = randint(1, db_items_count)
-    result_task = db.search(db_query.tid == result_taskid)
+    result_task = db.search(db_query.active == 1)
     for item in result_task:
+        active_task_list.append(item['tid'])
+    print active_task_list
+    print random.choice(active_task_list)
+    for item in db.search(db_query.tid == random.choice(active_task_list)):
+        add_log_entry(item['tid'])
         sendmessage(item['name'],item['disc'])
         break
-    loop.enter(10, 1, throw, (inner_loop,))
+    loop.enter(5, 1, throw, (inner_loop,))
 
 loop = sched.scheduler(time.time, time.sleep)
 loop.enter(0, 1, throw, (loop,))
