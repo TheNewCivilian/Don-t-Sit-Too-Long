@@ -56,7 +56,7 @@ def throw(inner_loop):
         add_log_entry(item['tid'])
         sendmessage(item['name'],item['disc'])
         break
-    loop.enter(5, 1, throw, (inner_loop,))
+    loop.enter(3600, 1, throw, (inner_loop,))
 
 loop = sched.scheduler(time.time, time.sleep)
 loop.enter(0, 1, throw, (loop,))
