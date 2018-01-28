@@ -7,8 +7,8 @@ It lets you personalize the tasks and review your scores.
 
 Screenshots:
 -----------
-![Home](01.png)
-![Add new tasks quick and easy](02.png)
+![Home](img/01.png)
+![Add new tasks quick and easy](img/02.png)
 
 
 Sound by [akx](https://github.com/akx/Notifications)<br>
