@@ -1,0 +1,231 @@
+<html>
+  <head>
+    <style>
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet"  href="{{ '../css/slider.css'|staticfile}}" >
+    <link rel="stylesheet"  href="{{ '../css/table.css'|staticfile}}" >
+    <link rel="stylesheet"  href="{{ '../css/page.css'|staticfile}}" >
+  </head>
+  <body>
+
+
+    <button class="btn-nav">
+    <div class="bar arrow-top-r"></div>
+    <div class="bar arrow-middle-r"></div>
+    <div class="bar arrow-bottom-r"></div>
+    </button>
+
+    <nav class="nav-container hidden hideNav">
+      <ul class="nav-list">
+        <li class="list-item"><a href="" class="home_menue_item"><i class="fa fa-home"></i></a></li>
+        <li class="list-item"><a href="" class="add_menue_item"><i class="fa fa-plus-square-o  "></i></a></li>
+        <li class="list-item"><a href="" class="archive_menue_item"><i class="fa fa-archive "></i></a></li>
+      </ul>
+    </nav>
+
+    <div class="home_content {{home_hidden}}">
+      <section>
+        <h1>HOME</h1>
+        <h3>Workout Overview</h3>
+        <div id="chart_div"></div>
+        <h3> Active Tasks</h3>
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th><i class="fa fa-ban"></i></th>
+                <th>Name</th>
+                <th>Discription</th>
+                <th>arms</th>
+                <th>chest</th>
+                <th>stomach</th>
+                <th>legs</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+
+              {% for item in active_tasks %}
+              <tr>
+                <td>
+                  <form action="BackEnd.remove_table_entry" id="form" data-bind="true">
+                    <button style="background: #af125a"><i class="fa fa-minus " style="color:#fff"</i></button></td>
+                    <input type="hidden" id="form_input" name="tid" value="{{ item.tid }}">
+                  </form>
+                <td>{{ item.name }}</td>
+                <td>{{ item.disc }}</td>
+                <td>{{ item.arms }}</td>
+                <td>{{ item.chest }}</td>
+                <td>{{ item.stomach }}</td>
+                <td>{{ item.legs }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="add_content {{add_hidden}}">
+      <section>
+        <h1>Create a new task</h1>
+        <form action="BackEnd.add_table_entry" id="form" data-bind="true">
+          Name <br>
+          <input type="text" id="form_input_name" name="name"><br>
+          Discription <br>
+          <input type="text" id="form_input_disc" name="disc" size=40><br>
+          Arms<br>
+          <input type="range" id="form_input_arms" name="arms" onchange="updateArmsInput(this.value);" value=0><span id="form_value_arms">0</span>Points<br>
+          Chest<br>
+          <input type="range" id="form_input_chest" name="chest" onchange="updateChestInput(this.value);" value=0><span id="form_value_chest">0</span>Points<br>
+          Stomach<br>
+          <input type="range" id="form_input_stomach" name="stomach" onchange="updateStomachInput(this.value);" value=0><span id="form_value_stomach">0</span>Points<br>
+          Legs<br>
+          <input type="range" id="form_input_legs" name="legs" onchange="updateLegsInput(this.value);" value=0><span id="form_value_legs">0</span>Points<br>
+          <input type="submit" value="Submit" id="form_submit">
+        </form>
+
+      </section>
+    </div>
+
+    <script>
+    function updateArmsInput(val) {
+          document.getElementById('form_value_arms').innerHTML=val;
+        }
+    function updateChestInput(val) {
+          document.getElementById('form_value_chest').innerHTML=val;
+        }
+    function updateStomachInput(val) {
+          document.getElementById('form_value_stomach').innerHTML=val;
+        }
+    function updateLegsInput(val) {
+          document.getElementById('form_value_legs').innerHTML=val;
+        }
+    </script>
+
+    <div class="archive_content {{archive_hidden}}">
+      <section>
+        <h1> Archive</h1>
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th><i class="fa fa-ban"></i></th>
+                <th>Name</th>
+                <th>Discription</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+              {% for item in archive_tasks %}
+              <tr>
+                <td>
+                  <form action="BackEnd.activate_table_entry" id="form" data-bind="true">
+                    <button style="background: #af125a"><i class="fa fa-plus " style="color:#fff"</i></button></td>
+                    <input type="hidden" id="form_input" name="tid" value="{{ item.tid }}">
+                  </form>
+                <td>{{ item.name }}</td>
+                <td>{{ item.disc }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+     $(window).load(function() {
+       $(".btn-nav").on("click tap", function() {
+         $(".nav-container").toggleClass("showNav hideNav").removeClass("hidden");
+         $(".home_content").toggleClass("silder_out");
+         $(".add_content").toggleClass("silder_out");
+         $(".archive_content").toggleClass("silder_out");
+         $(this).toggleClass("animated");
+       });
+       $(".home_menue_item").on("click tap", function() {
+         BackEnd.get_active_entries();
+         $(".home_content").removeClass("hidden");
+         $(".add_content").addClass("hidden");
+         $(".archive_content").addClass("hidden");
+         $(this).toggleClass("animated");
+       });
+       $(".add_menue_item").on("click tap", function() {
+         $(".add_content").removeClass("hidden");
+         $(".home_content").addClass("hidden");
+         $(".archive_content").addClass("hidden");
+         $(this).toggleClass("animated");
+       });
+       $(".archive_menue_item").on("click tap", function() {
+         BackEnd.get_archive_entries();
+         $(".archive_content").removeClass("hidden");
+         $(".home_content").addClass("hidden");
+         $(".add_content").addClass("hidden");
+         $(this).toggleClass("animated");
+       });
+     });
+    </script>
+    <script>
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawLineColors);
+
+    function drawLineColors() {
+          var data = new google.visualization.DataTable();
+          data.addColumn('datetime', 'X');
+          data.addColumn('number', 'Arm');
+          data.addColumn('number', 'Chest');
+          data.addColumn('number', 'Stomache');
+          data.addColumn('number', 'Leg');
+          logjson = JSON.parse(BackEnd.get_log_data())
+          var points_arm = 0
+          var points_chest = 0
+          var points_stomach = 0
+          var points_legs = 0
+          for (var i = 0; i < logjson.length; i++){
+            var item = logjson[i];
+            year = parseInt(item.time.year)+1
+            points_arm += parseInt(item.arms);
+            points_chest += parseInt(item.chest);
+            points_stomach += parseInt(item.stomach);
+            points_legs += parseInt(item.legs);
+            data.addRow([new Date(parseInt(item.time.year), parseInt(item.time.month), parseInt(item.time.day), parseInt(item.time.hour), parseInt(item.time.minute), 0),points_arm, points_chest,points_stomach,points_legs ]);
+          }
+
+          var options = {
+            hAxis: {
+              title: 'Time',
+              format: 'dd.MM',
+              baselineColor: 'red',
+              textStyle: {color: '#fff'},
+            },
+            vAxis: {
+              title: 'Points',
+              textStyle: {color: '#fff'},
+            },
+            colors: ['#f5fdc6', '#368f8b','#af125a','#ddbea8'],
+            backgroundColor: '#373f51'
+          };
+
+          var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+        }
+    </script>
+  </body>
+</html>

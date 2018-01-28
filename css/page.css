@@ -1,0 +1,67 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background: #373f51;
+  font-family: 'Roboto';
+  color: #ccc9a1
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+h1 {
+  text-align: center;
+  top: -80;
+  position: relative;
+}
+
+
+.home_content {
+  top: 50;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  transition: transform .5s ease-in-out;
+}
+
+.add_content {
+  top: 50;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  transition: transform .5s ease-in-out;
+}
+
+.archive_content {
+  top: 50;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  transition: transform .5s ease-in-out;
+}
+
+.silder_out {
+  left: 150
+}
+
+.home_menue_item{
+
+}
+
+.add_menue_item{
+
+}
+
+.archive_menue_item{
+
+}
