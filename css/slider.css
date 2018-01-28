@@ -20,7 +20,7 @@
   display: block;
   padding: 15px 0;
   width: 50px;
-  position: fixed;
+  position: absolute;
   left: 20px;
   margin: 0 auto;
   -webkit-transition: all 1s ease;

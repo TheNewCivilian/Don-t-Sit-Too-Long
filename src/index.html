@@ -34,46 +34,48 @@
     <div class="home_content {{home_hidden}}">
       <section>
         <h1>HOME</h1>
-        <h3>Workout Overview</h3>
-        <div id="chart_div"></div>
-        <h3> Active Tasks</h3>
-        <div class="tbl-header">
-          <table cellpadding="0" cellspacing="0" border="0">
-            <thead>
-              <tr>
-                <th><i class="fa fa-ban"></i></th>
-                <th>Name</th>
-                <th>Discription</th>
-                <th>arms</th>
-                <th>chest</th>
-                <th>stomach</th>
-                <th>legs</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
+        <div class="scollable">
+          <h3>Workout Overview</h3>
+          <div id="chart_div"></div>
+          <h3> Active Tasks</h3>
+          <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <thead>
+                <tr>
+                  <th><i class="fa fa-ban"></i></th>
+                  <th>Name</th>
+                  <th>Discription</th>
+                  <th>arms</th>
+                  <th>chest</th>
+                  <th>stomach</th>
+                  <th>legs</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
 
-        <div class="tbl-content">
-          <table cellpadding="0" cellspacing="0" border="0">
-            <tbody>
+          <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
 
-              {% for item in active_tasks %}
-              <tr>
-                <td>
-                  <form action="BackEnd.remove_table_entry" id="form" data-bind="true">
-                    <button style="background: #af125a"><i class="fa fa-minus " style="color:#fff"</i></button></td>
-                    <input type="hidden" id="form_input" name="tid" value="{{ item.tid }}">
-                  </form>
-                <td>{{ item.name }}</td>
-                <td>{{ item.disc }}</td>
-                <td>{{ item.arms }}</td>
-                <td>{{ item.chest }}</td>
-                <td>{{ item.stomach }}</td>
-                <td>{{ item.legs }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+                {% for item in active_tasks %}
+                <tr>
+                  <td>
+                    <form action="BackEnd.remove_table_entry" id="form" data-bind="true">
+                      <button style="background: #af125a"><i class="fa fa-minus " style="color:#fff"</i></button></td>
+                      <input type="hidden" id="form_input" name="tid" value="{{ item.tid }}">
+                    </form>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.disc }}</td>
+                  <td>{{ item.arms }}</td>
+                  <td>{{ item.chest }}</td>
+                  <td>{{ item.stomach }}</td>
+                  <td>{{ item.legs }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
     </div>
@@ -81,22 +83,23 @@
     <div class="add_content {{add_hidden}}">
       <section>
         <h1>Create a new task</h1>
-        <form action="BackEnd.add_table_entry" id="form" data-bind="true">
-          Name <br>
-          <input type="text" id="form_input_name" name="name"><br>
-          Discription <br>
-          <input type="text" id="form_input_disc" name="disc" size=40><br>
-          Arms<br>
-          <input type="range" id="form_input_arms" name="arms" onchange="updateArmsInput(this.value);" value=0><span id="form_value_arms">0</span>Points<br>
-          Chest<br>
-          <input type="range" id="form_input_chest" name="chest" onchange="updateChestInput(this.value);" value=0><span id="form_value_chest">0</span>Points<br>
-          Stomach<br>
-          <input type="range" id="form_input_stomach" name="stomach" onchange="updateStomachInput(this.value);" value=0><span id="form_value_stomach">0</span>Points<br>
-          Legs<br>
-          <input type="range" id="form_input_legs" name="legs" onchange="updateLegsInput(this.value);" value=0><span id="form_value_legs">0</span>Points<br>
-          <input type="submit" value="Submit" id="form_submit">
-        </form>
-
+        <div class="scollable">
+          <form action="BackEnd.add_table_entry" id="form" data-bind="true">
+            Name <br>
+            <input type="text" id="form_input_name" name="name"><br>
+            Discription <br>
+            <input type="text" id="form_input_disc" name="disc" size=40><br>
+            Arms<br>
+            <input type="range" id="form_input_arms" name="arms" onchange="updateArmsInput(this.value);" value=0><span id="form_value_arms">0</span>Points<br>
+            Chest<br>
+            <input type="range" id="form_input_chest" name="chest" onchange="updateChestInput(this.value);" value=0><span id="form_value_chest">0</span>Points<br>
+            Stomach<br>
+            <input type="range" id="form_input_stomach" name="stomach" onchange="updateStomachInput(this.value);" value=0><span id="form_value_stomach">0</span>Points<br>
+            Legs<br>
+            <input type="range" id="form_input_legs" name="legs" onchange="updateLegsInput(this.value);" value=0><span id="form_value_legs">0</span>Points<br>
+            <input type="submit" value="Submit" id="form_submit">
+          </form>
+        </div>
       </section>
     </div>
 
@@ -118,34 +121,36 @@
     <div class="archive_content {{archive_hidden}}">
       <section>
         <h1> Archive</h1>
-        <div class="tbl-header">
-          <table cellpadding="0" cellspacing="0" border="0">
-            <thead>
-              <tr>
-                <th><i class="fa fa-ban"></i></th>
-                <th>Name</th>
-                <th>Discription</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
+        <div class="scollable">
+          <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <thead>
+                <tr>
+                  <th><i class="fa fa-ban"></i></th>
+                  <th>Name</th>
+                  <th>Discription</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
 
-        <div class="tbl-content">
-          <table cellpadding="0" cellspacing="0" border="0">
-            <tbody>
-              {% for item in archive_tasks %}
-              <tr>
-                <td>
-                  <form action="BackEnd.activate_table_entry" id="form" data-bind="true">
-                    <button style="background: #af125a"><i class="fa fa-plus " style="color:#fff"</i></button></td>
-                    <input type="hidden" id="form_input" name="tid" value="{{ item.tid }}">
-                  </form>
-                <td>{{ item.name }}</td>
-                <td>{{ item.disc }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+          <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                {% for item in archive_tasks %}
+                <tr>
+                  <td>
+                    <form action="BackEnd.activate_table_entry" id="form" data-bind="true">
+                      <button style="background: #af125a"><i class="fa fa-plus " style="color:#fff"</i></button></td>
+                      <input type="hidden" id="form_input" name="tid" value="{{ item.tid }}">
+                    </form>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.disc }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
     </div>
@@ -205,7 +210,7 @@
             points_chest += parseInt(item.chest);
             points_stomach += parseInt(item.stomach);
             points_legs += parseInt(item.legs);
-            data.addRow([new Date(parseInt(item.time.year), parseInt(item.time.month), parseInt(item.time.day), parseInt(item.time.hour), parseInt(item.time.minute), 0),points_arm, points_chest,points_stomach,points_legs ]);
+            data.addRow([new Date(parseInt(item.time.year), parseInt(item.time.month), parseInt(item.time.day), parseInt(item.time.hour), parseInt(item.time.minute)),points_arm, points_chest,points_stomach,points_legs ]);
           }
 
           var options = {

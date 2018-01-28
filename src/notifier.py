@@ -9,11 +9,10 @@ import wave
 import random
 import datetime
 
-
 def playsound():
     """Plays notification sound"""
     chunk = 1024
-    wf = wave.open(os.path.dirname(__file__)+'../res/Belligerent.wav', 'rb')
+    wf = wave.open(os.path.dirname(__file__)+'/../res/Belligerent.wav', 'rb')
     p = pyaudio.PyAudio()
     stream = p.open(
         format = p.get_format_from_width(wf.getsampwidth()),
