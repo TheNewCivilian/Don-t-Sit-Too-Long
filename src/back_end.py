@@ -45,7 +45,7 @@ class BackEnd(htmlPy.Object):
         query = Query()
         self.app.template = ("./index.html", {
         "archive_tasks": db.search(query.active == 0),
-        "add_hidden        #return str()":"hidden",
+        "add_hidden":"hidden",
         "home_hidden":"hidden"
         })
 
