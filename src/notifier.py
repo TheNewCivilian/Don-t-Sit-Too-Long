@@ -8,11 +8,11 @@ import pyaudio
 import wave
 import random
 import datetime
-
+os.chdir(os.path.dirname(__file__))
 def playsound():
     """Plays notification sound"""
     chunk = 1024
-    wf = wave.open(os.path.dirname(__file__)+'/../res/Belligerent.wav', 'rb')
+    wf = wave.open('../res/Belligerent.wav', 'rb')
     p = pyaudio.PyAudio()
     stream = p.open(
         format = p.get_format_from_width(wf.getsampwidth()),
@@ -28,12 +28,13 @@ def playsound():
 
 def sendmessage(title,message):
     """Sends notification to user"""
-    subprocess.Popen(['notify-send','-i',os.getcwd() +os.path.dirname(__file__)[1:]+ "/../res/exercise.png",'-a','DEAL!',title, message])
+    print os.getcwd() +os.path.join(os.path.dirname(__file__),'/../res/exercise.png')
+    subprocess.Popen(['notify-send','-i',os.getcwd() +os.path.join(os.path.dirname(__file__),'/../res/exercise.png'),'-a','DEAL!',title, message])
     playsound()
     return
 
 def add_log_entry(tid):
-     db = TinyDB(os.getcwd() +os.path.dirname(__file__)[1:]+'/../database/log.json')
+     db = TinyDB('../database/log.json')
      ts = time.time()
      year = datetime.datetime.fromtimestamp(ts).strftime("%Y")
      month = datetime.datetime.fromtimestamp(ts).strftime("%m")
@@ -43,7 +44,7 @@ def add_log_entry(tid):
      db.insert({'tid': tid, 'year': year,'month': month,'day': day,'hour': hour,'minute': minute}) #insertdate
 
 def throw(inner_loop):
-    db = TinyDB(os.getcwd() +os.path.dirname(__file__)[1:]+'/../database/db.json')
+    db = TinyDB('../database/db.json')
     active_task_list = []
     db_query = Query()
     result_task = db.search(db_query.active == 1)
