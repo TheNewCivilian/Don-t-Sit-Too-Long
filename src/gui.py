@@ -4,7 +4,8 @@ from back_end import BackEnd
 from PyQt4 import QtCore
 import os
 
-os.chdir(os.path.dirname(__file__))
+if os.path.dirname(__file__) != '':
+    os.chdir(os.path.dirname(__file__))
 # Initial confiurations
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 

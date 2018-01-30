@@ -3,7 +3,8 @@ from tinydb import TinyDB, Query
 import os
 import json
 
-os.chdir(os.path.dirname(__file__))
+if os.path.dirname(__file__) != '':
+    os.chdir(os.path.dirname(__file__))
 class BackEnd(htmlPy.Object):
 
     def __init__(self, app):
@@ -32,7 +33,7 @@ class BackEnd(htmlPy.Object):
 
     @htmlPy.Slot()
     def get_active_entries(self):
-        db = TinyDB(os.path.abspath(os.path.join(os.path.dirname(__file__),'../database/db.json')))
+        db = TinyDB('../database/db.json')
         query = Query()
         self.app.template = ("./index.html", {
         "active_tasks": db.search(query.active == 1),
@@ -42,7 +43,7 @@ class BackEnd(htmlPy.Object):
 
     @htmlPy.Slot()
     def get_archive_entries(self):
-        db = TinyDB(os.getcwd() +os.path.dirname(__file__)+'/../database/db.json')
+        db = TinyDB('../database/db.json')
         query = Query()
         self.app.template = ("./index.html", {
         "archive_tasks": db.search(query.active == 0),
@@ -52,14 +53,14 @@ class BackEnd(htmlPy.Object):
 
     @htmlPy.Slot(str, result=int)
     def add_table_entry(self, json_data):
-        db = TinyDB(normpath(os.getcwd() +os.path.dirname(__file__)+'../database/db.json'))
+        db = TinyDB('../database/db.json')
         form_data = json.loads(json_data)
         db.insert({'tid': len(db.all())+1, 'name': form_data['name'],'disc':form_data['disc'], 'active': 1, 'arms':form_data['arms'], 'legs':form_data['legs'], 'stomach':form_data['stomach'], 'chest':form_data['chest']})
         return 0        #return str()
 
     @htmlPy.Slot(str, result=int)
     def remove_table_entry(self, json_data):
-        db = TinyDB(os.getcwd() +os.path.dirname(__file__)+'/../database/db.json')
+        db = TinyDB('../database/db.json')
         update_query = Query()
         form_data = json.loads(json_data)
         entry_id = int(form_data['tid'])
@@ -69,7 +70,7 @@ class BackEnd(htmlPy.Object):
 
     @htmlPy.Slot(str, result=int)
     def activate_table_entry(self, json_data):
-        db = TinyDB(os.getcwd() +os.path.dirname(__file__)+'/../database/db.json')
+        db = TinyDB('../database/db.json')
         update_query = Query()
         form_data = json.loads(json_data)
         entry_id = int(form_data['tid'])
