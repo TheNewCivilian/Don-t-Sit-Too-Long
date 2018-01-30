@@ -30,6 +30,24 @@ class BackEnd(htmlPy.Object):
                 log_result.append({"time":timestamp,"arms":item['arms'],"legs":item['legs'],"stomach":item['stomach'],"chest":item['chest']}) #berarbeiten
         return json.dumps(log_result, separators=(',',':'))
 
+    @htmlPy.Slot(result=str)
+    def get_all_entries(self):
+        db = TinyDB('../database/db.json')
+        db_entries = db.all()
+        result = []
+        for item in db_entries:
+            result.append({"tid":item['tid'],"name":item['name'],"disc":item['disc'],"arms":item['arms'],"legs":item['legs'],"stomach":item['stomach'],"chest":item['chest']})
+        return json.dumps(result, separators=(',',':'))
+
+    @htmlPy.Slot(int,result=str)
+    def get_entries_by_tid(self,tid):
+        db = TinyDB('../database/db.json')
+        query = Query()
+        db_entries = db.search(query.tid == tid)
+        result = []
+        for item in db_entries:
+            result.append({"tid":item['tid'],"name":item['name'],"disc":item['disc'],"arms":item['arms'],"legs":item['legs'],"stomach":item['stomach'],"chest":item['chest']})
+        return json.dumps(result, separators=(',',':'))
 
     @htmlPy.Slot()
     def get_active_entries(self):
@@ -55,8 +73,15 @@ class BackEnd(htmlPy.Object):
     def add_table_entry(self, json_data):
         db = TinyDB('../database/db.json')
         form_data = json.loads(json_data)
-        db.insert({'tid': len(db.all())+1, 'name': form_data['name'],'disc':form_data['disc'], 'active': 1, 'arms':form_data['arms'], 'legs':form_data['legs'], 'stomach':form_data['stomach'], 'chest':form_data['chest']})
-        return 0        #return str()
+        if (form_data['tid'] == 0):
+            db.insert({'tid': len(db.all())+1, 'name': form_data['name'],'disc':form_data['disc'], 'active': 1, 'arms':form_data['arms'], 'legs':form_data['legs'], 'stomach':form_data['stomach'], 'chest':form_data['chest']})
+        else:
+            tid = form_data['tid']
+            print "Tja" + str(form_data) + " " +str(tid)+" "+str(form_data['name'])
+            query = Query()
+            print db.search(query.tid == int(tid))
+            db.update({'name': form_data['name'],'disc':form_data['disc'], 'arms':form_data['arms'], 'legs':form_data['legs'], 'stomach':form_data['stomach'], 'chest':form_data['chest']}, query.tid == int(tid))
+        return 0
 
     @htmlPy.Slot(str, result=int)
     def remove_table_entry(self, json_data):
