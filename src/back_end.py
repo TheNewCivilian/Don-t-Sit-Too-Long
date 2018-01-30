@@ -73,13 +73,11 @@ class BackEnd(htmlPy.Object):
     def add_table_entry(self, json_data):
         db = TinyDB('../database/db.json')
         form_data = json.loads(json_data)
-        if (form_data['tid'] == 0):
+        if (int(form_data['tid']) == 0):
             db.insert({'tid': len(db.all())+1, 'name': form_data['name'],'disc':form_data['disc'], 'active': 1, 'arms':form_data['arms'], 'legs':form_data['legs'], 'stomach':form_data['stomach'], 'chest':form_data['chest']})
         else:
             tid = form_data['tid']
-            print "Tja" + str(form_data) + " " +str(tid)+" "+str(form_data['name'])
             query = Query()
-            print db.search(query.tid == int(tid))
             db.update({'name': form_data['name'],'disc':form_data['disc'], 'arms':form_data['arms'], 'legs':form_data['legs'], 'stomach':form_data['stomach'], 'chest':form_data['chest']}, query.tid == int(tid))
         return 0
 
