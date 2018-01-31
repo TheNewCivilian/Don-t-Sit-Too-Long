@@ -48,6 +48,10 @@ function show_selected(tid){
     document.getElementById('form_input_stomach').value = item.stomach;
     document.getElementById('form_input_legs').value = item.legs;
     document.getElementById('form_input_tid').value = item.tid;
+    updateArmsInput(item.arms)
+    updateChestInput(item.chest)
+    updateStomachInput(item.stomach)
+    updateLegsInput(item.legs)
   }
 
 }

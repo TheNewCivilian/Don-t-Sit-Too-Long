@@ -29,6 +29,28 @@ h1 {
 
 }
 
+#chart svg {
+  height: 300px;
+  color: #fff;
+}
+
+svg {
+    display: block;
+}
+
+.nvd3 .nv-axis {
+  fill: #fff;
+  stroke-opacity: .75;
+  shape-rendering: crispEdges;
+}
+
+.nvd3 .nv-axis path {
+  fill: none;
+  stroke: #fff;
+  stroke-opacity: .75;
+  shape-rendering: crispEdges;
+}
+
 .home_content {
   top: 50;
   bottom: 0;
