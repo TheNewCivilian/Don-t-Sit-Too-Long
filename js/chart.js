@@ -18,13 +18,11 @@ nv.addGraph(function() {
   chart.y2Axis
     .tickFormat(d3.format(',r'));
 
-  chart.tooltipContent( function(key, x, y){
-    //To Add
+  chart.tooltip.contentGenerator( function(data){
   } )
 
   d3.select('#chart svg')
     .datum(data())
-    .transition().duration(500)
     .call(chart)
     ;
 
@@ -45,12 +43,12 @@ function data() {
   var points_stomach = 0
   var points_legs = 0
   for (var i = 0; i < logjson.length; i++){
-        var item = logjson[i];
-        points_arm += parseInt(item.arms);
-        points_chest += parseInt(item.chest);
-        points_stomach += parseInt(item.stomach);
-        points_legs += parseInt(item.legs);
-        timestamp = new Date(parseInt(item.time.year),parseInt(item.time.month),parseInt(item.time.day),parseInt(item.time.hour), parseInt(item.time.minute))
+        var item = logjson[i]
+        points_arm += parseInt(item.arms)
+        points_chest += parseInt(item.chest)
+        points_stomach += parseInt(item.stomach)
+        points_legs += parseInt(item.legs)
+        timestamp = new Date(parseInt(item.time.year),parseInt(item.time.month)-1,parseInt(item.time.day),parseInt(item.time.hour), parseInt(item.time.minute),0,0)
         arms_graph.push({x: timestamp, y: points_arm})
         chest_graph.push({x: timestamp, y: points_chest})
         stomach_graph.push({x: timestamp, y: points_stomach})
