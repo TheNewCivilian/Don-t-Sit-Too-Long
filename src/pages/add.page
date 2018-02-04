@@ -1,0 +1,26 @@
+<div class="add_page {{add_hidden}}">
+  <section>
+    <div class="scollable">
+      <form action="BackEnd.add_table_entry" id="form" data-bind="true">
+        Create New / Edit <br>
+        <select id=selector onchange="show_selected(this.value)">
+          <option value=-1 >Create New</option>
+        </select> <br>
+        Name <br>
+        <input type="text" id="form_input_name" name="name"><br>
+        Discription <br>
+        <input type="text" id="form_input_disc" name="disc" size=40><br>
+        Arms<br>
+        <input type="range" id="form_input_arms" name="arms" onchange="updateArmsInput(this.value);" value=0><span id="form_value_arms">0</span>Points<br>
+        Chest<br>
+        <input type="range" id="form_input_chest" name="chest" onchange="updateChestInput(this.value);" value=0><span id="form_value_chest">0</span>Points<br>
+        Stomach<br>
+        <input type="range" id="form_input_stomach" name="stomach" onchange="updateStomachInput(this.value);" value=0><span id="form_value_stomach">0</span>Points<br>
+        Legs<br>
+        <input type="range" id="form_input_legs" name="legs" onchange="updateLegsInput(this.value);" value=0><span id="form_value_legs">0</span>Points<br>
+        <input type="hidden" id="form_input_tid" name="tid" value="0">
+        <input type="submit" value="Submit" id="form_submit">
+      </form>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,10 @@
+<div class="home_page {{home_hidden}}">
+  <section>
+    <div class="scollable">
+      <h3>Workout Overview</h3>
+      <div id="chart">
+        <svg></svg>
+      </div>
+    </div>
+  </section>
+</div>

@@ -10,7 +10,7 @@ class BackEnd(htmlPy.Object):
     def __init__(self, app):
         super(BackEnd, self).__init__()
         self.app = app
-        self.get_active_entries()
+        self.show_page("home")
 
     @htmlPy.Slot(str)
     def debug_to_console(self,mes):
@@ -54,9 +54,8 @@ class BackEnd(htmlPy.Object):
         db = TinyDB('../database/db.json')
         query = Query()
         self.app.template = ("./index.html", {
+        "page":"pages/tasks.page",
         "active_tasks": db.search(query.active == 1),
-        "archive_hidden": "hidden",
-        "add_hidden":"hidden",
         "headline":"HOME"
         })
 
@@ -65,10 +64,16 @@ class BackEnd(htmlPy.Object):
         db = TinyDB('../database/db.json')
         query = Query()
         self.app.template = ("./index.html", {
+        "page":"pages/archive.page",
         "archive_tasks": db.search(query.active == 0),
-        "add_hidden":"hidden",
-        "home_hidden":"hidden",
         "headline":"ARCHIVE"
+        })
+
+    @htmlPy.Slot(str)
+    def show_page(self,pagename):
+        self.app.template = ("./index.html", {
+        "page":"pages/"+pagename+".page",
+        "headline":"Create a new task"
         })
 
     @htmlPy.Slot(str, result=int)

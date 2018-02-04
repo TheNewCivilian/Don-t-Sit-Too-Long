@@ -9,15 +9,14 @@ $(window).load(function() {
     $(this).toggleClass("animated")
   })
   $(".home_menue_item").on("click tap", function() {
+    BackEnd.show_page("home")
+  })
+  $(".tasks_menue_item").on("click tap", function() {
     BackEnd.get_active_entries()
   })
   $(".add_menue_item").on("click tap", function() {
+    BackEnd.show_page("add")
     addoptions()
-    $("#headline").html("Create a new task")
-    $(".add_page").removeClass("hidden")
-    $(".home_page").addClass("hidden")
-    $(".archive_page").addClass("hidden")
-    $(this).toggleClass("animated")
   })
   $(".archive_menue_item").on("click tap", function() {
     BackEnd.get_archive_entries()

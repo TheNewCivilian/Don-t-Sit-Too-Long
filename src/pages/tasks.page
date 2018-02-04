@@ -1,0 +1,43 @@
+<div class="home_page {{home_hidden}}">
+  <section>
+      <h3> Active Tasks</h3>
+      <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <th><i class="fa fa-ban"></i></th>
+              <th>Name</th>
+              <th>Discription</th>
+              <th>arms</th>
+              <th>chest</th>
+              <th>stomach</th>
+              <th>legs</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+
+            {% for item in active_tasks %}
+            <tr>
+              <td>
+                <form action="BackEnd.remove_table_entry" id="form" data-bind="true">
+                  <button style="background: #af125a"><i class="fa fa-minus " style="color:#fff"</i></button></td>
+                  <input type="hidden" id="form_input" name="tid" value="{{ item.tid }}">
+                </form>
+              <td>{{ item.name }}</td>
+              <td>{{ item.disc }}</td>
+              <td>{{ item.arms }}</td>
+              <td>{{ item.chest }}</td>
+              <td>{{ item.stomach }}</td>
+              <td>{{ item.legs }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+  </section>
+</div>
