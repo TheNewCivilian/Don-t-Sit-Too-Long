@@ -16,12 +16,12 @@
   </head>
   <body>
 
-
     <button class="btn-nav">
     <div class="bar arrow-top-r"></div>
     <div class="bar arrow-middle-r"></div>
     <div class="bar arrow-bottom-r"></div>
     </button>
+    <h1 id="headline">{{headline}}</h1>
 
     <nav class="nav-container hidden hideNav">
       <ul class="nav-list">
@@ -31,9 +31,8 @@
       </ul>
     </nav>
 
-    <div class="home_content {{home_hidden}}">
+    <div class="home_page {{home_hidden}}">
       <section>
-        <h1>HOME</h1>
         <div class="scollable">
           <h3>Workout Overview</h3>
           <div id="chart">
@@ -83,9 +82,8 @@
       </section>
     </div>
 
-    <div class="add_content {{add_hidden}}">
+    <div class="add_page {{add_hidden}}">
       <section>
-        <h1>Create a new task</h1>
         <div class="scollable">
           <form action="BackEnd.add_table_entry" id="form" data-bind="true">
             Create New / Edit <br>
@@ -111,9 +109,8 @@
       </section>
     </div>
 
-    <div class="archive_content {{archive_hidden}}">
+    <div class="archive_page {{archive_hidden}}">
       <section>
-        <h1> Archive</h1>
         <div class="scollable">
           <div class="tbl-header">
             <table cellpadding="0" cellspacing="0" border="0">

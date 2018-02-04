@@ -56,7 +56,8 @@ class BackEnd(htmlPy.Object):
         self.app.template = ("./index.html", {
         "active_tasks": db.search(query.active == 1),
         "archive_hidden": "hidden",
-        "add_hidden":"hidden"
+        "add_hidden":"hidden",
+        "headline":"HOME"
         })
 
     @htmlPy.Slot()
@@ -66,7 +67,8 @@ class BackEnd(htmlPy.Object):
         self.app.template = ("./index.html", {
         "archive_tasks": db.search(query.active == 0),
         "add_hidden":"hidden",
-        "home_hidden":"hidden"
+        "home_hidden":"hidden",
+        "headline":"ARCHIVE"
         })
 
     @htmlPy.Slot(str, result=int)

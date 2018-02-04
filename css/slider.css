@@ -12,11 +12,12 @@
   display: block;
   height: 5px;
   width: 50px;
-  background: #ccc9a1;
+  background: #495060;
   margin: 10px auto;
 }
 
 .btn-nav {
+  z-index: 10;
   display: block;
   padding: 15px 0;
   width: 50px;
@@ -35,6 +36,7 @@
 .middle { margin: 0 auto; }
 
 .bar {
+  z-index: 10;
   -webkit-transition: all .7s ease;
   -moz-transition: all .7s ease;
   -ms-transition: all .7s ease;
@@ -51,6 +53,7 @@
   -o-transform: rotateZ(-45deg) translateY(11px);
   transform: rotateZ(-45deg) translateY(11px);
   width: 25px;
+  background: #ccc9a1;
 }
 
 .animated .arrow-middle-r {
@@ -59,6 +62,7 @@
   -ms-transform: translateX(25px);
   -o-transform: translateX(25px);
   transform: translateX(25px);
+  background: #ccc9a1;
 }
 
 .animated .arrow-bottom-r {
@@ -68,13 +72,14 @@
   -o-transform: rotateZ(45deg) translateY(-11px);
   transform: rotateZ(45deg) translateY(-11px);
   width: 25px;
+  background: #ccc9a1;
 }
 
 .nav-container {
   position: absolute;
   left: -50%;
   top: 0;
-  background: #368f8b;
+  background: #323a4a;
   height: 100%;
   width: 150px;
 }
