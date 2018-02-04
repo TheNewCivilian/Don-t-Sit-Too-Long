@@ -1,4 +1,4 @@
-<div class="home_page {{home_hidden}}">
+<div class="home_page">
   <section>
       <h3> Active Tasks</h3>
       <div class="tbl-header">

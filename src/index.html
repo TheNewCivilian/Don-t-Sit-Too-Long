@@ -13,6 +13,12 @@
     <link rel="stylesheet"  href="{{ '../css/slider.css'|staticfile}}" type='text/css'>
     <link rel="stylesheet"  href="{{ '../css/table.css'|staticfile}}" type='text/css'>
     <link rel="stylesheet"  href="{{ '../css/page.css'|staticfile}}" type='text/css'>
+
+    <script type="text/javascript" src="{{ '../js/libs/jquery-2.1.4.min.js'|staticfile}}"></script>
+    <script type="text/javascript" src="{{ '../js/libs/d3.min.js'|staticfile}}"></script>
+    <script type="text/javascript" src="{{ '../js/libs/nv.d3.js'|staticfile}}"></script>
+    <script type="text/javascript" src="{{ '../js/page.js'|staticfile}}"></script>
+    <script type="text/javascript" src="{{ '../js/chart.js'|staticfile}}"></script>
   </head>
   <body>
 
@@ -21,7 +27,6 @@
     <div class="bar arrow-middle-r"></div>
     <div class="bar arrow-bottom-r"></div>
     </button>
-    <h1 id="headline">{{headline}}</h1>
 
     <nav class="nav-container hidden hideNav">
       <ul class="nav-list">
@@ -32,12 +37,10 @@
       </ul>
     </nav>
 
+    <h1 id="headline">{{headline}}</h1>
+
     {% include page ignore missing with context %}
 
-    <script type="text/javascript" src="{{ '../js/libs/jquery-2.1.4.min.js'|staticfile}}"></script>
-    <script type="text/javascript" src="{{ '../js/libs/d3.min.js'|staticfile}}"></script>
-    <script type="text/javascript" src="{{ '../js/libs/nv.d3.js'|staticfile}}"></script>
-    <script type="text/javascript" src="{{ '../js/page.js'|staticfile}}"></script>
-    <script type="text/javascript" src="{{ '../js/chart.js'|staticfile}}"></script>
+
   </body>
 </html>

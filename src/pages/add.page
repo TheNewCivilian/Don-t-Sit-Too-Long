@@ -1,9 +1,11 @@
-<div class="add_page {{add_hidden}}">
+
+<script type="text/javascript" src="{{ '../js/add.js'|staticfile}}"></script>
+<div class="add_page">
   <section>
     <div class="scollable">
       <form action="BackEnd.add_table_entry" id="form" data-bind="true">
         Create New / Edit <br>
-        <select id=selector onchange="show_selected(this.value)">
+        <select id="add_selector" onchange="show_selected(this.value)">
           <option value=-1 >Create New</option>
         </select> <br>
         Name <br>

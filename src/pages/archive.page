@@ -1,11 +1,11 @@
-<div class="archive_page {{archive_hidden}}">
+<div class="archive_page">
   <section>
     <div class="scollable">
       <div class="tbl-header">
         <table cellpadding="0" cellspacing="0" border="0">
           <thead>
             <tr>
-              <th><i class="fa fa-ban"></i></th>
+              <th><i class="fa fa-plus"></i></th>
               <th>Name</th>
               <th>Discription</th>
             </tr>

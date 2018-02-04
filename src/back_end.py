@@ -49,30 +49,14 @@ class BackEnd(htmlPy.Object):
             result.append({"tid":item['tid'],"name":item['name'],"disc":item['disc'],"arms":item['arms'],"legs":item['legs'],"stomach":item['stomach'],"chest":item['chest']})
         return json.dumps(result, separators=(',',':'))
 
-    @htmlPy.Slot()
-    def get_active_entries(self):
-        db = TinyDB('../database/db.json')
-        query = Query()
-        self.app.template = ("./index.html", {
-        "page":"pages/tasks.page",
-        "active_tasks": db.search(query.active == 1),
-        "headline":"HOME"
-        })
-
-    @htmlPy.Slot()
-    def get_archive_entries(self):
-        db = TinyDB('../database/db.json')
-        query = Query()
-        self.app.template = ("./index.html", {
-        "page":"pages/archive.page",
-        "archive_tasks": db.search(query.active == 0),
-        "headline":"ARCHIVE"
-        })
-
     @htmlPy.Slot(str)
     def show_page(self,pagename):
+        db = TinyDB('../database/db.json')
+        query = Query()
         self.app.template = ("./index.html", {
         "page":"pages/"+pagename+".page",
+        "active_tasks": db.search(query.active == 1),
+        "archive_tasks": db.search(query.active == 0),
         "headline":"Create a new task"
         })
 
