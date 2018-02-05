@@ -1,7 +1,3 @@
-window.addEventListener('DOMContentLoaded', function() {
-  addoptions()
-}, true)
-
 function show_selected(tid) {
   if (tid == -1) {
     document.getElementById("form_input_name").value = ""
@@ -25,20 +21,6 @@ function show_selected(tid) {
     updateChestInput(item.chest)
     updateStomachInput(item.stomach)
     updateLegsInput(item.legs)
-  }
-}
-
-function addoptions() {
-  BackEnd.debug_to_console("RUNS")
-  json_return = JSON.parse(BackEnd.get_all_entries())
-  select = document.getElementById("add_selector")
-
-  for (var i = 0; i < json_return.length; i++) {
-    var item = json_return[i]
-    var opt = document.createElement("option")
-    opt.value = item.tid
-    opt.innerHTML = item.name
-    select.appendChild(opt)
   }
 }
 

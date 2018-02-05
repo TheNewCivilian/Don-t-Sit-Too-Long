@@ -1,5 +1,4 @@
 
-<script type="text/javascript" src="{{ '../js/add.js'|staticfile}}"></script>
 <div class="add_page">
   <section>
     <div class="scollable">
@@ -7,6 +6,9 @@
         Create New / Edit <br>
         <select id="add_selector" onchange="show_selected(this.value)">
           <option value=-1 >Create New</option>
+          {% for item in all_tasks %}
+          <option value={{ item.tid }}>{{ item.name }}</option>
+          {% endfor %}
         </select> <br>
         Name <br>
         <input type="text" id="form_input_name" name="name"><br>

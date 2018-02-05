@@ -10,7 +10,7 @@ class BackEnd(htmlPy.Object):
     def __init__(self, app):
         super(BackEnd, self).__init__()
         self.app = app
-        self.show_page("home")
+        self.show_page("add")
 
     @htmlPy.Slot(str)
     def debug_to_console(self,mes):
@@ -30,14 +30,6 @@ class BackEnd(htmlPy.Object):
                 log_result.append({"time":timestamp,"arms":item['arms'],"legs":item['legs'],"stomach":item['stomach'],"chest":item['chest']}) #berarbeiten
         return json.dumps(log_result, separators=(',',':'))
 
-    @htmlPy.Slot(result=str)
-    def get_all_entries(self):
-        db = TinyDB('../database/db.json')
-        db_entries = db.all()
-        result = []
-        for item in db_entries:
-            result.append({"tid":item['tid'],"name":item['name'],"disc":item['disc'],"arms":item['arms'],"legs":item['legs'],"stomach":item['stomach'],"chest":item['chest']})
-        return json.dumps(result, separators=(',',':'))
 
     @htmlPy.Slot(int,result=str)
     def get_entries_by_tid(self,tid):
@@ -57,6 +49,7 @@ class BackEnd(htmlPy.Object):
         "page":"pages/"+pagename+".page",
         "active_tasks": db.search(query.active == 1),
         "archive_tasks": db.search(query.active == 0),
+        "all_tasks": db.all(),
         "headline":"Create a new task"
         })
 
@@ -79,7 +72,7 @@ class BackEnd(htmlPy.Object):
         form_data = json.loads(json_data)
         entry_id = int(form_data['tid'])
         db.update({'active': 0}, update_query.tid == entry_id)
-        self.get_active_entries();
+        self.show_page('tasks');
         return 0
 
     @htmlPy.Slot(str, result=int)
@@ -89,5 +82,5 @@ class BackEnd(htmlPy.Object):
         form_data = json.loads(json_data)
         entry_id = int(form_data['tid'])
         db.update({'active': 1}, update_query.tid == entry_id)
-        self.get_archive_entries();
+        self.show_page('archive');
         return 0
