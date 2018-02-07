@@ -23,7 +23,14 @@ function home_script () {
     points_legs += parseInt(item.legs)
   }
   points_avg = (points_arm+points_chest+points_stomach+points_legs)/4
-  points_goal = 400
+  points_goal_a = 5*Math.pow(2, Math.round(getBaseLog(2, Math.round(points_avg/5))))
+  if (points_goal_a < points_avg || points_goal_a<=20){
+    points_goal = 5*Math.pow(2, Math.round(getBaseLog(2, Math.round(points_avg/5)))+1)
+  }else {
+    points_goal = points_goal_a
+  }
+
+
 
   $('#goal').goalProgress({
       goalAmount: points_goal,
@@ -47,4 +54,8 @@ function home_script () {
       }
   });
 
+}
+
+function getBaseLog(x, y) {
+  return Math.log(y) / Math.log(x);
 }
