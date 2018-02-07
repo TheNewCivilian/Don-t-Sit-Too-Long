@@ -1,0 +1,20 @@
+
+<div class="home_page">
+  <section>
+    <h2> Autor / </h2>
+    <div style="color:#6a6f7c;text-align:center">
+      This App is made with <span style="color:#af125a">❤</span> by<br>
+      <span style="color:#ccc9a1">David Prenninger</span><br>
+      Github: TheNewCivilian<br>
+      Web: Neuz8t.de<br>
+    </div>
+
+    <h2> Library References / </h2>
+    <div style="color:#6a6f7c;text-align:center">
+      Framework: htmlPy<br>
+      Icons: faicons.com<br>
+      Sound: akx (Github)<br>
+      Appicon: flaticon.com<br>
+    </div>
+  </section>
+</div>

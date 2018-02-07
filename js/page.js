@@ -20,4 +20,10 @@ $(window).load(function() {
   $(".archive_menue_item").on("click tap", function() {
     BackEnd.show_page("archive","Archive")
   })
+  $(".connect_menue_item").on("click tap", function() {
+    BackEnd.show_page("connect","Connect")
+  })
+  $(".about_menue_item").on("click tap", function() {
+    BackEnd.show_page("about","About")
+  })
 })
