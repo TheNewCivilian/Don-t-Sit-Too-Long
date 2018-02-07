@@ -1,8 +1,17 @@
+
 <div class="home_page">
   <section>
-      <h3>Workout Overview</h3>
-      <div id="chart">
-        <svg></svg>
-      </div>
+    <h2>Control Panel /</h2>
+    <button id="pause" class="control_panel_button"> PAUSE TRAINING </button>
+    <h2>Next Goal /</h2>
+    <div class="container">
+      <div id="goal"></div>
+    </div>
+    <h2>Workout Stats /</h2>
+    <div id="chart">
+      <svg></svg>
+    </div>
   </section>
 </div>
+<script type="text/javascript" src="{{ '../js/home.js'|staticfile}}"></script>
+<script type="text/javascript" src="{{ '../js/chart.js'|staticfile}}"></script>

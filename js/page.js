@@ -9,15 +9,15 @@ $(window).load(function() {
     $(this).toggleClass("animated")
   })
   $(".home_menue_item").on("click tap", function() {
-    BackEnd.show_page("home")
+    BackEnd.show_page("home","HOME")
   })
   $(".tasks_menue_item").on("click tap", function() {
-    BackEnd.show_page("tasks")
+    BackEnd.show_page("tasks","Active Tasks")
   })
   $(".add_menue_item").on("click tap", function() {
-    BackEnd.show_page("add")
+    BackEnd.show_page("add","Manage your Tasks")
   })
   $(".archive_menue_item").on("click tap", function() {
-    BackEnd.show_page("archive")
+    BackEnd.show_page("archive","Archive")
   })
 })

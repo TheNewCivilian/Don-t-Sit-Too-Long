@@ -1,4 +1,6 @@
 nv.addGraph(function() {
+  //Dirty Hack O.o
+  home_script()
   var chart = nv.models.lineWithFocusChart()
 
   chart.xAxis.showMaxMin(false).tickFormat(function(d) {

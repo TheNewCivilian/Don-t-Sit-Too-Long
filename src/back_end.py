@@ -10,7 +10,7 @@ class BackEnd(htmlPy.Object):
     def __init__(self, app):
         super(BackEnd, self).__init__()
         self.app = app
-        self.show_page("add")
+        self.show_page("home","HOME")
 
     @htmlPy.Slot(str)
     def debug_to_console(self,mes):
@@ -41,16 +41,16 @@ class BackEnd(htmlPy.Object):
             result.append({"tid":item['tid'],"name":item['name'],"disc":item['disc'],"arms":item['arms'],"legs":item['legs'],"stomach":item['stomach'],"chest":item['chest']})
         return json.dumps(result, separators=(',',':'))
 
-    @htmlPy.Slot(str)
-    def show_page(self,pagename):
+    @htmlPy.Slot(str,str)
+    def show_page(self,pagename,headline):
         db = TinyDB('../database/db.json')
         query = Query()
         self.app.template = ("./index.html", {
         "page":"pages/"+pagename+".page",
-        "active_tasks": db.search(query.active == 1),
-        "archive_tasks": db.search(query.active == 0),
-        "all_tasks": db.all(),
-        "headline":"Create a new task"
+        "active_tasks": db.search((query.tid >=0) & (query.active == 1)),
+        "archive_tasks": db.search((query.tid >=0) & (query.active == 0)),
+        "all_tasks": db.search((query.tid >=0)),
+        "headline":headline
         })
 
     @htmlPy.Slot(str, result=int)
@@ -72,7 +72,7 @@ class BackEnd(htmlPy.Object):
         form_data = json.loads(json_data)
         entry_id = int(form_data['tid'])
         db.update({'active': 0}, update_query.tid == entry_id)
-        self.show_page('tasks');
+        self.show_page('tasks',"Active Tasks");
         return 0
 
     @htmlPy.Slot(str, result=int)
@@ -82,5 +82,28 @@ class BackEnd(htmlPy.Object):
         form_data = json.loads(json_data)
         entry_id = int(form_data['tid'])
         db.update({'active': 1}, update_query.tid == entry_id)
-        self.show_page('archive');
+        self.show_page('archive',"Archive");
+        return 0
+
+    @htmlPy.Slot()
+    def pause_training(self):
+        db = TinyDB('../database/db.json')
+        update_query = Query()
+        db.update({'active': 1}, update_query.tid == -1)
+        return 0
+
+    @htmlPy.Slot(result=int)
+    def get_pause_status(self):
+        db = TinyDB('../database/db.json')
+        query = Query()
+        pauseelement = db.search(query.tid == -1)
+        for item in pauseelement:
+            return item["active"]
+
+
+    @htmlPy.Slot()
+    def resume_training(self):
+        db = TinyDB('../database/db.json')
+        update_query = Query()
+        db.update({'active': 0}, update_query.tid == -1)
         return 0

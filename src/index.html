@@ -9,6 +9,7 @@
     <link rel='stylesheet' href="{{ '../css/libs/robofont.css'|staticfile}}"  type='text/css'>
     <link rel="stylesheet" href="{{ '../css/libs/css/font-awesome.min.css'|staticfile}}" type='text/css'>
     <link rel="stylesheet" href="{{ '../css/libs/nv.d3.css'|staticfile}}" type='text/css'>
+    <link rel="stylesheet" href="{{ '../css/libs/goalProgress.css'|staticfile}}" type='text/css'>
 
     <link rel="stylesheet"  href="{{ '../css/slider.css'|staticfile}}" type='text/css'>
     <link rel="stylesheet"  href="{{ '../css/table.css'|staticfile}}" type='text/css'>
@@ -17,11 +18,13 @@
     <script type="text/javascript" src="{{ '../js/libs/jquery-2.1.4.min.js'|staticfile}}"></script>
     <script type="text/javascript" src="{{ '../js/libs/d3.min.js'|staticfile}}"></script>
     <script type="text/javascript" src="{{ '../js/libs/nv.d3.js'|staticfile}}"></script>
+    <script type="text/javascript" src="{{ '../js/libs/goalProgress.min.js'|staticfile}}"></script>
     <script type="text/javascript" src="{{ '../js/page.js'|staticfile}}"></script>
-    <script type="text/javascript" src="{{ '../js/chart.js'|staticfile}}"></script>
     <script type="text/javascript" src="{{ '../js/add.js'|staticfile}}"></script>
+
   </head>
   <body>
+
 
     <button class="btn-nav">
     <div class="bar arrow-top-r"></div>
@@ -38,11 +41,10 @@
       </ul>
     </nav>
 
-    <h1 id="headline">{{headline}}</h1>
+    <h1 class="headline" id="headline">{{headline}}</h1>
 
-    {% include page ignore missing with context %}
+    {% include page with context %}
 
-    </script>
 
 
   </body>

@@ -47,17 +47,24 @@ def throw(inner_loop):
     db = TinyDB('../database/db.json')
     active_task_list = []
     db_query = Query()
-    result_task = db.search(db_query.active == 1)
-    for item in result_task:
-        active_task_list.append(item['tid'])
-    print active_task_list
-    print random.choice(active_task_list)
-    for item in db.search(db_query.tid == random.choice(active_task_list)):
-        add_log_entry(item['tid'])
-        sendmessage(item['name'],item['disc'])
-        break
+    if (db.search((db_query.tid == -1) & (db_query.active == 1)) == [] ):
+        result_task = db.search(db_query.active == 1)
+        for item in result_task:
+            active_task_list.append(item['tid'])
+        print active_task_list
+        print random.choice(active_task_list)
+        for item in db.search(db_query.tid == random.choice(active_task_list)):
+            add_log_entry(item['tid'])
+            sendmessage(item['name'],item['disc'])
+            break
     loop.enter(3600, 1, throw, (inner_loop,))
 
+
+db = TinyDB('../database/db.json')
+db_query = Query()
+if (db.search(db_query.tid == -1) == []):
+    db.insert({'tid': -1,'active': 0})
+db.close()
 loop = sched.scheduler(time.time, time.sleep)
 loop.enter(0, 1, throw, (loop,))
 loop.run()
