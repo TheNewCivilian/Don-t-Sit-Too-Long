@@ -17,7 +17,7 @@ just start: `./notifier.py`
 Screenshots:
 -----------
 ![Home](img/01.png)
-![Add new tasks quick and easy](img/02.png)
+![About](img/02.png)
 
 
 Sound by [akx](https://github.com/akx/Notifications)<br>
